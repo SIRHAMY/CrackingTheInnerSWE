@@ -9,11 +9,39 @@ public class RouteFinder {
 		
 		Node a = new Node();
 		Node b = new Node();
+		Node c = new Node();
+		Node d = new Node();
+		Node e = new Node();
 		
 		a.addAdjacent(b);
 		
+		b.addAdjacent(c);
+		
+		c.addAdjacent(d);
+		
+		d.addAdjacent(b);
+		d.addAdjacent(e);
+		
+		System.out.println("A -> B");
 		System.out.println(rf.routeExists(a, b));
+		
+		System.out.println("B -> A");
 		System.out.println(rf.routeExists(b, a));
+		
+		System.out.println("B -> D");
+		System.out.println(rf.routeExists(b, d));
+		
+		System.out.println("C -> B");
+		System.out.println(rf.routeExists(c, b));
+		
+		System.out.println("D -> C");
+		System.out.println(rf.routeExists(d, c));
+		
+		System.out.println("A -> E");
+		System.out.println(rf.routeExists(a, e));
+		
+		System.out.println("E -> B");
+		System.out.println(rf.routeExists(e, b));
 	}
 
 	public boolean routeExists(Node start, Node end) {
