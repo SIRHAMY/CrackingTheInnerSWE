@@ -49,21 +49,19 @@ public class BSTChecker {
 		System.out.println("Check c: " + check.bstCheck(c));
 		
 	}
-
+	
 	public boolean bstCheck(BSTNode root) {
-		//Check if left exists and less than root
-		if( root.getLeft() != null && root.getLeft().getData() >= root.getData() ) return false;
+		return bstCheck(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
+	}
+
+	public boolean bstCheck(BSTNode root, int max, int min) {
+		if(root == null) return true;
 		
-		//Check if right exists and more than root
-		if( root.getRight() != null && root.getRight().getData() <= root.getData()) return false;
+		if(root.getData()>max || root.getData() <= min) return false;
+
+		if( !bstCheck(root.getLeft(), root.getData(), min) || !bstCheck(root.getRight(), max, root.getData()) ) return false;
 		
-		boolean left = true;
-		if(root.getLeft() != null) left = bstCheck(root.getLeft());
-		
-		boolean right = true;
-		if(root.getRight() != null) right = bstCheck(root.getRight());
-		
-		return left && right;
+		return true;
 		
 	}
 }
