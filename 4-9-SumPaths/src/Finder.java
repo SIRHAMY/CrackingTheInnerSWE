@@ -67,19 +67,16 @@ public class Finder {
 	private void findValuedPathHelper(BSTNode root, int target, int pathValue, ArrayList<BSTNode> path){
 		int nPathValue = root.getData() + pathValue;
 		
-		if(nPathValue > target) return;
-		
 		ArrayList subPath = (ArrayList) path.clone();
 		subPath.add(root);
 	
 		if(nPathValue == target) {
 			printArrayList(subPath);
-			return;
-		} else {
-			
-			if(root.getLeft() != null) findValuedPathHelper(root.getLeft(), target, nPathValue, subPath);
-			if(root.getRight() != null) findValuedPathHelper(root.getRight(), target, nPathValue, subPath);
+
 		}
+			
+		if(root.getLeft() != null) findValuedPathHelper(root.getLeft(), target, nPathValue, subPath);
+		if(root.getRight() != null) findValuedPathHelper(root.getRight(), target, nPathValue, subPath);
 	}
 	
 	private void printArrayList(ArrayList<BSTNode> path) {
