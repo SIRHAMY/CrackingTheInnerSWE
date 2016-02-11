@@ -17,6 +17,8 @@ public class Binatron {
 		System.out.println("Debug: Smallest");
 		
 		int base = enter;
+		
+		//This thing might be the problem
 		int length = (int)(Math.log10(base) + 1);
 		
 		for(int i = 0; i < length-1; i++) {
