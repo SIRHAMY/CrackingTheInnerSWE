@@ -1,7 +1,13 @@
 
 public class PaintFill {
+	public boolean paintArea(int[][] pixelColors, int pixelX, int pixelY, int targetColor, int paintColor){
+		if(targetColor == paintColor) return false;
+		else {
+			return fillArea( pixelColors, pixelX, pixelY, targetColor, paintColor);
+		}
+	}
 
-	public void fillArea(int[][] pixelColors, int pixelX, int pixelY, int targetColor, int paintColor) {
+	public boolean fillArea(int[][] pixelColors, int pixelX, int pixelY, int targetColor, int paintColor) {
 		
 		//We only fill and check surrounding pixels if the current pixel was the correct color
 		if(targetColor == pixelColors[pixelX][pixelY]) {
@@ -28,7 +34,11 @@ public class PaintFill {
 			if(pixelX > 0) {
 				fillArea(pixelColors, pixelX - 1, pixelY, targetColor, paintColor);
 			}
+			
+			return true;
 		}
+		
+		return false;
 		
 	}
 }
