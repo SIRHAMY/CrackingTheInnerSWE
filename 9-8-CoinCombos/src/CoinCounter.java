@@ -6,25 +6,31 @@ public class CoinCounter {
 		
 		for(int coinTotal = 0; coinTotal < 10; coinTotal++) {
 			System.out.println("TEST: CoinTotal = " + coinTotal);
-			System.out.println("Result = " + count.countCombinations(0, coinTotal));
+			System.out.println("Result = " + count.countCombinations(25, coinTotal));
 			System.out.println("--END TEST--");
 		}
 	}
 
-	public int countCombinations(int currTotal, int n) {
-		int[] denominations = new int[]{1,5,10,25};
+	public int countCombinations(int currDenom, int n) {
+		int nextDenom = 0;
+		switch(currDenom) {
+		case 25:
+			nextDenom = 10;
+			break;
+		case 10:
+			nextDenom = 5;
+			break;
+		case 5:
+			nextDenom = 1;
+			break;
+		case 1:
+			return 1;
+		}
+		
 		int comboCount = 0;
 		
-		for(int denom = 0; denom < denominations.length; denom++) {
-			int tempTotal = denominations[denom] + currTotal;
-			if( tempTotal < n ) {
-				comboCount += countCombinations(tempTotal, n);
-			} else if( tempTotal == n ) {
-				comboCount += 1;
-				return comboCount;
-			} else {
-				break;
-			}
+		for(int count = 0; count * currDenom <= n; count++) {
+			comboCount += countCombinations(nextDenom, n - count*currDenom);
 		}
 		
 		return comboCount;
